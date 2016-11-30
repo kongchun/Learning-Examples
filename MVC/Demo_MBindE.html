@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+</head>
+<script>
+var User = function(name) {
+    this.name = name;
+}
+
+User.records = [];
+User.create = function(name) {
+    this.records.push(new User(name));
+    this.trigger("change");
+}
+
+User.bind = function(event, callback) {
+    var calls = this._callbacks || (this._callbacks = {});
+    ((this._callbacks[event]) || (this._callbacks[event] = [])).push(callback);
+}
+
+User.trigger = function(event, callback) {
+    if (!this._callbacks) {
+        return this
+    };
+    if (!this._callbacks[event]) {
+        return this;
+    }
+    var list = this._callbacks[event];
+    $.each(list, function() {
+        this()
+    });
+}
+
+$(function() {
+    User.bind("change", function() {
+        //实现模板 
+        console.log("change");
+    })
+
+    User.bind("change", function() {
+        //实现模板 
+        console.log("change 1");
+    })
+
+    User.create("kc");
+
+
+})
+
+</script>
+
+<body>
+</body>
+
+</html>
+

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<script>
+var Person = function(name) {
+    this.name = name;
+    return "i am test!";
+}
+
+Person.prototype.show = function() {
+    console.log("show");
+}
+
+Person.find = function(id) {
+    console.log(id);
+    console.log(this.find);
+}
+
+
+
+console.log(Person("kc"));
+//console.log(this == window); //for Window 
+console.log(this); //for Window 
+console.log(name);
+console.log(this.name); //for Window
+console.log("================");
+// new 关键字 改变 this 上下 也改变了 return 语句
+var user = new Person("kongchun");
+console.log(user);
+console.log(user instanceof Person);
+
+
+console.log("=======Class=========");
+//使用new来创建对象(调用构造函数)时，如果return的是非对象(数字、字符串、布尔类型等)会忽而略返回值;如果return的是对象，则返回该对象
+function Class() {
+    this.age = 1;
+    return function() {
+        this.name = "kc";
+    }
+}
+
+console.log(Class())
+var test = new Class();
+console.log(test);
+console.log(test.__proto__)
+console.log(test instanceof Class)
+console.log(test.constructor)
+console.log("================");
+
+function Class2() {
+    this.age = 1;
+    return this;
+}
+
+console.log(Class2())
+var test = new Class2();
+console.log(test);
+console.log(test.__proto__)
+console.log(test instanceof Class2)
+console.log(test.constructor)
+console.log("================");
+
+function Class3() {
+    this.age = 1;
+    return {
+        name: "kc"
+    };
+}
+
+console.log(Class3())
+var test = new Class3();
+console.log(test);
+console.log(test instanceof Class3)
+console.log(test.constructor)
+
+</script>
+
+<body>
+</body>
+
+</html>
+

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<script type="text/javascript">
+var Class = function(parent) {
+    var klass = function(name) {
+        this.name = name;
+        this.init.apply(this, arguments);
+    }
+    klass.prototype.init = function() {
+        console.log(arguments);
+    };
+
+    if (parent) {
+        var subClass = function() {};
+        subClass.prototype = parent.prototype;
+        kClass.prototype = new subClass;
+    }
+
+    klass.fn = klass.prototype;
+    klass.fn.parent = klass;
+
+    return klass;
+}
+
+
+var Preson = new Class;
+console.log(Preson instanceof Class);
+console.log(Preson);
+console.log(Preson.prototype);
+
+var user = new Preson("kongchun");
+
+console.log(user.name);
+console.log(user instanceof Preson);
+
+console.log(user.parent);
+console.log("================");
+var user2 = new user.parent(1);
+console.log(user2.name);
+
+
+
+
+
+
+console.log("=====Animal===========");
+var Animal = function(name) {
+    this.name = name;
+}
+
+Animal.prototype.breath = function() {
+    console.log("breath");
+}
+
+var Dog = function() {
+    Animal.apply(this, arguments);
+};
+Dog.prototype = new Animal;
+
+var dog = new Dog("dog");
+console.log(dog.name);
+dog.breath();
+
+</script>
+
+<body>
+</body>
+
+</html>
+

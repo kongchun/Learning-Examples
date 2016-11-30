@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+</head>
+<script>
+var proxy = function(fun, thisObject) {
+    console.log(fun);
+    console.log(thisObject);
+    return function() {
+        return fun.apply(thisObject, arguments)
+    }
+}
+
+var Controller = {};
+
+Controller.btn = {
+    wasClicked: function() {
+
+        console.log(this);
+        console.log(arguments);
+        console.log("wasClicked");
+    },
+
+    init: function() {
+        var self = this;
+
+        /*
+                $(".btn").click(function(events) {
+                    self.wasClicked(events);
+                });
+        */
+        /*
+                $(".btn").click(function() {
+                    self.wasClicked.apply(self, arguments);
+                });
+        */
+
+        //$(".btn").click(proxy(this.wasClicked, this));
+        //$(".btn").click($.proxy(this.wasClicked, this));
+        $(".btn").bind("click", $.proxy(this.wasClicked, this));
+    }
+}
+
+$(function() {
+    Controller.btn.init();
+
+})
+
+</script>
+
+<body>
+    <div class="btn">click test</div>
+</body>
+
+</html>
+
