@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Dome1</title>
+    <script src="../react-0.14.7/build/react.js"></script>
+    <script src="../react-0.14.7/build/react-dom.js"></script>
+    <script src="../react-0.14.7/build/browser.min.js"></script>
+    <script src="//libs.baidu.com/jquery/1.11.1/jquery.min.js"></script>
+
+</head>
+
+<body>
+    <div id="example"></div>
+    <div id="example2"></div>
+    <div id="example3"></div>
+    <div id="example4"></div>
+    <div id="example5"></div>
+	<div id="example6"></div>
+	<div id="example7"></div>
+	<div id="example8"></div>
+	<div id="example9"></div>
+	<div id="example10"></div>
+	<div id="example11"></div>
+	<div id="example12"></div>
+    <script type="text/babel">
+        ReactDOM.render(
+        <h1>hello, world!</h1>, document.getElementById("example") );
+    </script>
+	<script type="text/babel">
+		var names = ['Alice', 'Emily', 'Kate']; ReactDOM.render(
+		<div>
+		    { names.map(function (name) { 
+		    	return <div>Hello, example2 {name}!</div>
+		    }) }
+		</div>, document.getElementById("example2") );
+	</script>
+	<script type="text/babel">
+		var arr = [
+		  <h1>example3 Hello world!</h1>,
+		  <h2>example3 React is awesome</h2>,
+		];
+		ReactDOM.render(
+		  <div>{arr}</div>,
+		  document.getElementById('example3')
+		);
+	</script>
+
+	<script type="text/babel">
+	var HelloMessage = React.createClass({
+	  render: function() {
+	    return <h1>Hello {this.props.name}</h1>;
+	  }
+	});
+
+	ReactDOM.render(
+	  <HelloMessage name="example4 John" />,
+	  document.getElementById('example4')
+	);
+
+	</script>
+	
+	<script type="text/babel">
+	var NotesList = React.createClass({
+	  render: function() {
+	    return (
+	      <ol>
+	      {
+	        React.Children.map(this.props.children, function (child) {
+	          return <li>{child}</li>;
+	        })
+	      }
+	      </ol>
+	    );
+	  }
+	});
+
+	ReactDOM.render(
+	  <NotesList>
+	    <span>example5 hello</span>
+	    <span>example5 world</span>
+	  </NotesList>,
+	   document.getElementById('example5')
+	);
+	</script>
+
+	<script type="text/babel">
+	var MyTitle = React.createClass({
+	  propTypes: {
+	    title: React.PropTypes.string.isRequired,
+	  },
+
+	  render: function() {
+	     return <div> {this.props.title} </div>;
+	   }
+	});
+
+	var data = "example6example7";
+
+	ReactDOM.render(
+	  <MyTitle title={data} />,
+	   document.getElementById('example6')
+	);
+
+	</script>
+
+	<script type="text/babel">
+		var MyTitle = React.createClass({
+		  getDefaultProps : function () {
+		    return {
+		      title : 'example7'
+		    };
+		  },
+
+		  render: function() {
+		     return <h1> {this.props.title} </h1>;
+		   }
+		});
+
+		ReactDOM.render(
+		  <MyTitle />,
+		  document.getElementById('example7')
+);
+	</script>
+
+	<script type="text/babel">
+		var MyComponent = React.createClass({
+		  handleClick: function() {
+		    this.refs.myTextInput.focus();
+		  },
+		  render: function() {
+		    return (
+		      <div>
+		        <input type="text" ref="myTextInput" />
+		        <input type="button" value="Focus the text input example8" onClick={this.handleClick} />
+		      </div>
+		    );
+		  }
+		});
+
+		ReactDOM.render(
+		  <MyComponent />,
+		  document.getElementById('example8')
+		);
+	</script>
+
+	<script type="text/babel">
+	var LikeButton = React.createClass({
+	  getInitialState: function() {
+	    return {liked: false};
+	  },
+	  handleClick: function(event) {
+	    this.setState({liked: !this.state.liked});
+	  },
+	  render: function() {
+	    var text = this.state.liked ? 'like' : 'haven\'t liked';
+	    return (
+	      <p onClick={this.handleClick}>
+	       example9 You {text} this. Click to toggle.
+	      </p>
+	    );
+	  }
+	});
+
+	ReactDOM.render(
+	  <LikeButton />,
+	  document.getElementById('example9')
+	);
+	</script>
+
+	<script type="text/babel">
+		var Hello = React.createClass({
+		  getInitialState: function () {
+		    return {
+		      opacity: 1.0
+		    };
+		  },
+
+		  componentDidMount: function () {
+		    this.timer = setInterval(function () {
+		      var opacity = this.state.opacity;
+		      opacity -= .05;
+		      if (opacity < 0.1) {
+		        opacity = 1.0;
+		      }
+		      this.setState({
+		        opacity: opacity
+		      });
+		    }.bind(this), 100);
+		  },
+
+		  render: function () {
+		    return (
+		      <div style={{opacity: this.state.opacity}}>
+		        Hello {this.props.name} example10
+		      </div>
+		    );
+		  }
+		});
+
+		ReactDOM.render(
+		  <Hello name="world"/>,
+		  document.getElementById('example10')
+		);
+	</script>
+
+
+	<script type="text/babel">
+	//Mounting：已插入真实 DOM
+	//Updating：正在被重新渲染
+	//Unmounting：已移出真实 DOM
+		var UserGist = React.createClass({
+		  getInitialState: function() {
+		    return {
+		      username: '',
+		      lastGistUrl: ''
+		    };
+		  },
+
+		  componentDidMount: function() {
+		    $.get(this.props.source, function(result) {
+		      var lastGist = result[0];
+		      if (this.isMounted()) {
+		        this.setState({
+		          username: lastGist.owner.login,
+		          lastGistUrl: lastGist.html_url
+		        });
+		      }
+		    }.bind(this));
+		  },
+
+		  render: function() {
+		    return (
+		      <div>
+		        {this.state.username}'s last gist is
+		        <a href={this.state.lastGistUrl}>here</a>.
+		      </div>
+		    );
+		  }
+		});
+
+		ReactDOM.render(
+		  <UserGist source="https://api.github.com/users/octocat/gists" />,
+		  document.getElementById('example11')
+		);
+
+	</script>
+
+
+	<script type="text/babel">
+	var RepoList = React.createClass({
+	  getInitialState: function() {
+	    return {
+	      loading: true,
+	      error: null,
+	      data: null
+	    };
+	  },
+
+	  componentDidMount() {
+	    this.props.promise.then(
+	      value => this.setState({loading: false, data: value}),
+	      error => this.setState({loading: false, error: error}));
+	  },
+
+	  render: function() {
+	    if (this.state.loading) {
+	      return <span>Loading...</span>;
+	    }
+	    else if (this.state.error !== null) {
+	      return <span>Error: {this.state.error.message}</span>;
+
+	    }
+	    else {
+	      var repos = this.state.data.items;
+	      var repoList = repos.map(function (repo, index) {
+	        return (
+	          <li key={index}><a href={repo.html_url}>{repo.name}</a> ({repo.stargazers_count} stars) <br/> {repo.description}</li>
+	        );
+	      });
+	      return (
+	        <main>
+	          <h1>Most Popular JavaScript example12</h1>
+	          <ol>{repoList}</ol>
+	        </main>
+	      );
+	    }
+	  }
+	});
+
+	ReactDOM.render(
+	  <RepoList promise={$.getJSON('https://api.github.com/search/repositories?q=javascript&sort=stars')} />,
+	  document.getElementById('example12')
+	);
+	</script>
+
+</body>
+
+</html>
+
