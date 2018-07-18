@@ -1,7 +1,5 @@
 // babel babel-es6.js --out-file babel-es5.js
-'use strict';
-
-import  async  from "async";
+'use strict'
 
 function A(callback){
 	setTimeout(function(){
@@ -18,9 +16,23 @@ function B(callback){
 };
 
 
+async function asyncFun(task) {
+	var promiseArr = task.map((func)=>{
+		return () => {
+			return new Promise((resolve)=>{
+				func(resolve);
+			})
+		}
+	})
 
-function asyncFun(...task){
-	async.waterfall(...task)
+	for(let func of promiseArr){
+	    await func();
+	}
+	
+	
+
+	//OR
+	//async.waterfall(...task)
 }
 
 //console.log(async)
@@ -30,3 +42,37 @@ function asyncFun(...task){
 asyncFun([A,B,B,A]); // A,B,B,A
 
 
+
+
+
+//asyncFun()
+
+
+
+async function timeout() {
+　　return 'hello world';
+}
+
+//console.log(timeout())
+
+timeout().then((result)=>{
+	//console.log(result)
+})
+
+
+function timeoutRun(ms) {
+  return new Promise((resolve) => {
+    setTimeout(()=>{
+		resolve("hello world2");
+	}, ms);
+  });
+}
+
+async function testResult() {
+    let result = await timeoutRun(30);
+    return result;
+}
+
+testResult().then((t)=>{
+	//console.log(t)
+})
