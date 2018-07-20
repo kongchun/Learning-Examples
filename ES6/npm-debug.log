@@ -1,0 +1,391 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'C:\\Program Files\\nodejs\\node.exe',
+1 verbose cli   'C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js',
+1 verbose cli   'install',
+1 verbose cli   '-g',
+1 verbose cli   'async' ]
+2 info using npm@3.8.9
+3 info using node@v6.2.0
+4 silly loadCurrentTree Starting
+5 silly install loadCurrentTree
+6 silly install readGlobalPackageData
+7 silly fetchPackageMetaData async
+8 silly fetchNamedPackageData async
+9 silly mapToRegistry name async
+10 silly mapToRegistry using default registry
+11 silly mapToRegistry registry https://registry.npmjs.org/
+12 silly mapToRegistry data Result {
+12 silly mapToRegistry   raw: 'async',
+12 silly mapToRegistry   scope: null,
+12 silly mapToRegistry   name: 'async',
+12 silly mapToRegistry   rawSpec: '',
+12 silly mapToRegistry   spec: 'latest',
+12 silly mapToRegistry   type: 'tag' }
+13 silly mapToRegistry uri https://registry.npmjs.org/async
+14 verbose request uri https://registry.npmjs.org/async
+15 verbose request no auth needed
+16 info attempt registry request try #1 at 10:55:37
+17 verbose request id fd08a166282cf948
+18 verbose etag W/"5902cba8-1f874"
+19 verbose lastModified Fri, 28 Apr 2017 04:57:12 GMT
+20 http request GET https://registry.npmjs.org/async
+21 http 200 https://registry.npmjs.org/async
+22 verbose headers { server: 'nginx/1.10.1',
+22 verbose headers   'content-type': 'application/json',
+22 verbose headers   'last-modified': 'Fri, 09 Jun 2017 15:59:36 GMT',
+22 verbose headers   etag: 'W/"593ac5e8-20fa9"',
+22 verbose headers   'content-encoding': 'gzip',
+22 verbose headers   'cache-control': 'max-age=300',
+22 verbose headers   'content-length': '16328',
+22 verbose headers   'accept-ranges': 'bytes',
+22 verbose headers   date: 'Mon, 12 Jun 2017 02:55:37 GMT',
+22 verbose headers   via: '1.1 varnish',
+22 verbose headers   age: '211',
+22 verbose headers   connection: 'keep-alive',
+22 verbose headers   'x-served-by': 'cache-nrt6120-NRT',
+22 verbose headers   'x-cache': 'HIT',
+22 verbose headers   'x-cache-hits': '692',
+22 verbose headers   'x-timer': 'S1497236137.408900,VS0,VE0',
+22 verbose headers   vary: 'Accept-Encoding' }
+23 silly get cb [ 200,
+23 silly get   { server: 'nginx/1.10.1',
+23 silly get     'content-type': 'application/json',
+23 silly get     'last-modified': 'Fri, 09 Jun 2017 15:59:36 GMT',
+23 silly get     etag: 'W/"593ac5e8-20fa9"',
+23 silly get     'content-encoding': 'gzip',
+23 silly get     'cache-control': 'max-age=300',
+23 silly get     'content-length': '16328',
+23 silly get     'accept-ranges': 'bytes',
+23 silly get     date: 'Mon, 12 Jun 2017 02:55:37 GMT',
+23 silly get     via: '1.1 varnish',
+23 silly get     age: '211',
+23 silly get     connection: 'keep-alive',
+23 silly get     'x-served-by': 'cache-nrt6120-NRT',
+23 silly get     'x-cache': 'HIT',
+23 silly get     'x-cache-hits': '692',
+23 silly get     'x-timer': 'S1497236137.408900,VS0,VE0',
+23 silly get     vary: 'Accept-Encoding' } ]
+24 verbose get saving async to C:\Users\kongchun\AppData\Roaming\npm-cache\registry.npmjs.org\async\.cache.json
+25 verbose correctMkdir C:\Users\kongchun\AppData\Roaming\npm-cache correctMkdir not in flight; initializing
+26 silly install normalizeTree
+27 silly loadCurrentTree Finishing
+28 silly loadIdealTree Starting
+29 silly install loadIdealTree
+30 silly cloneCurrentTree Starting
+31 silly install cloneCurrentTreeToIdealTree
+32 silly cloneCurrentTree Finishing
+33 silly loadShrinkwrap Starting
+34 silly install loadShrinkwrap
+35 silly loadShrinkwrap Finishing
+36 silly loadAllDepsIntoIdealTree Starting
+37 silly install loadAllDepsIntoIdealTree
+38 silly resolveWithNewModule async@2.4.1 checking installable status
+39 silly cache add args [ 'async', null ]
+40 verbose cache add spec async
+41 silly cache add parsed spec Result {
+41 silly cache add   raw: 'async',
+41 silly cache add   scope: null,
+41 silly cache add   name: 'async',
+41 silly cache add   rawSpec: '',
+41 silly cache add   spec: 'latest',
+41 silly cache add   type: 'tag' }
+42 silly addNamed async@latest
+43 verbose addNamed "latest" is being treated as a dist-tag for async
+44 info addNameTag [ 'async', 'latest' ]
+45 silly mapToRegistry name async
+46 silly mapToRegistry using default registry
+47 silly mapToRegistry registry https://registry.npmjs.org/
+48 silly mapToRegistry data Result {
+48 silly mapToRegistry   raw: 'async',
+48 silly mapToRegistry   scope: null,
+48 silly mapToRegistry   name: 'async',
+48 silly mapToRegistry   rawSpec: '',
+48 silly mapToRegistry   spec: 'latest',
+48 silly mapToRegistry   type: 'tag' }
+49 silly mapToRegistry uri https://registry.npmjs.org/async
+50 verbose addNameTag registry:https://registry.npmjs.org/async not in flight; fetching
+51 verbose get https://registry.npmjs.org/async not expired, no request
+52 silly addNameTag next cb for async with tag latest
+53 silly addNamed async@2.4.1
+54 verbose addNamed "2.4.1" is a plain semver version for async
+55 silly mapToRegistry name async
+56 silly mapToRegistry using default registry
+57 silly mapToRegistry registry https://registry.npmjs.org/
+58 silly mapToRegistry data Result {
+58 silly mapToRegistry   raw: 'async',
+58 silly mapToRegistry   scope: null,
+58 silly mapToRegistry   name: 'async',
+58 silly mapToRegistry   rawSpec: '',
+58 silly mapToRegistry   spec: 'latest',
+58 silly mapToRegistry   type: 'tag' }
+59 silly mapToRegistry uri https://registry.npmjs.org/async
+60 verbose addRemoteTarball https://registry.npmjs.org/async/-/async-2.4.1.tgz not in flight; adding
+61 verbose addRemoteTarball [ 'https://registry.npmjs.org/async/-/async-2.4.1.tgz',
+61 verbose addRemoteTarball   '62a56b279c98a11d0987096a01cc3eeb8eb7bbd7' ]
+62 info retry fetch attempt 1 at 10:55:41
+63 info attempt registry request try #1 at 10:55:41
+64 http fetch GET https://registry.npmjs.org/async/-/async-2.4.1.tgz
+65 http fetch 200 https://registry.npmjs.org/async/-/async-2.4.1.tgz
+66 silly fetchAndShaCheck shasum 62a56b279c98a11d0987096a01cc3eeb8eb7bbd7
+67 verbose addTmpTarball C:\Users\kongchun\AppData\Local\Temp\npm-13708-0a4cab90\registry.npmjs.org\async\-\async-2.4.1.tgz not in flight; adding
+68 verbose addTmpTarball already have metadata; skipping unpack for async@2.4.1
+69 verbose correctMkdir C:\Users\kongchun\AppData\Roaming\npm-cache correctMkdir not in flight; initializing
+70 silly cache afterAdd async@2.4.1
+71 verbose afterAdd C:\Users\kongchun\AppData\Roaming\npm-cache\async\2.4.1\package\package.json not in flight; writing
+72 verbose correctMkdir C:\Users\kongchun\AppData\Roaming\npm-cache correctMkdir not in flight; initializing
+73 verbose afterAdd C:\Users\kongchun\AppData\Roaming\npm-cache\async\2.4.1\package\package.json written
+74 silly fetchNamedPackageData lodash
+75 silly mapToRegistry name lodash
+76 silly mapToRegistry using default registry
+77 silly mapToRegistry registry https://registry.npmjs.org/
+78 silly mapToRegistry data Result {
+78 silly mapToRegistry   raw: 'lodash',
+78 silly mapToRegistry   scope: null,
+78 silly mapToRegistry   name: 'lodash',
+78 silly mapToRegistry   rawSpec: '',
+78 silly mapToRegistry   spec: 'latest',
+78 silly mapToRegistry   type: 'tag' }
+79 silly mapToRegistry uri https://registry.npmjs.org/lodash
+80 verbose request uri https://registry.npmjs.org/lodash
+81 verbose request no auth needed
+82 info attempt registry request try #1 at 10:55:42
+83 verbose etag W/"59029645-29365"
+84 verbose lastModified Fri, 28 Apr 2017 01:09:25 GMT
+85 http request GET https://registry.npmjs.org/lodash
+86 http 200 https://registry.npmjs.org/lodash
+87 verbose headers { server: 'nginx/1.10.3',
+87 verbose headers   'content-type': 'application/json',
+87 verbose headers   'last-modified': 'Sun, 11 Jun 2017 15:43:05 GMT',
+87 verbose headers   etag: 'W/"593d6509-29626"',
+87 verbose headers   'content-encoding': 'gzip',
+87 verbose headers   'cache-control': 'max-age=300',
+87 verbose headers   'content-length': '17648',
+87 verbose headers   'accept-ranges': 'bytes',
+87 verbose headers   date: 'Mon, 12 Jun 2017 02:55:38 GMT',
+87 verbose headers   via: '1.1 varnish',
+87 verbose headers   age: '242',
+87 verbose headers   connection: 'keep-alive',
+87 verbose headers   'x-served-by': 'cache-nrt6120-NRT',
+87 verbose headers   'x-cache': 'HIT',
+87 verbose headers   'x-cache-hits': '31',
+87 verbose headers   'x-timer': 'S1497236138.302449,VS0,VE0',
+87 verbose headers   vary: 'Accept-Encoding' }
+88 silly get cb [ 200,
+88 silly get   { server: 'nginx/1.10.3',
+88 silly get     'content-type': 'application/json',
+88 silly get     'last-modified': 'Sun, 11 Jun 2017 15:43:05 GMT',
+88 silly get     etag: 'W/"593d6509-29626"',
+88 silly get     'content-encoding': 'gzip',
+88 silly get     'cache-control': 'max-age=300',
+88 silly get     'content-length': '17648',
+88 silly get     'accept-ranges': 'bytes',
+88 silly get     date: 'Mon, 12 Jun 2017 02:55:38 GMT',
+88 silly get     via: '1.1 varnish',
+88 silly get     age: '242',
+88 silly get     connection: 'keep-alive',
+88 silly get     'x-served-by': 'cache-nrt6120-NRT',
+88 silly get     'x-cache': 'HIT',
+88 silly get     'x-cache-hits': '31',
+88 silly get     'x-timer': 'S1497236138.302449,VS0,VE0',
+88 silly get     vary: 'Accept-Encoding' } ]
+89 verbose get saving lodash to C:\Users\kongchun\AppData\Roaming\npm-cache\registry.npmjs.org\lodash\.cache.json
+90 verbose correctMkdir C:\Users\kongchun\AppData\Roaming\npm-cache correctMkdir not in flight; initializing
+91 silly resolveWithNewModule lodash@4.17.4 checking installable status
+92 silly cache add args [ 'lodash@^4.14.0', null ]
+93 verbose cache add spec lodash@^4.14.0
+94 silly cache add parsed spec Result {
+94 silly cache add   raw: 'lodash@^4.14.0',
+94 silly cache add   scope: null,
+94 silly cache add   name: 'lodash',
+94 silly cache add   rawSpec: '^4.14.0',
+94 silly cache add   spec: '>=4.14.0 <5.0.0',
+94 silly cache add   type: 'range' }
+95 silly addNamed lodash@>=4.14.0 <5.0.0
+96 verbose addNamed ">=4.14.0 <5.0.0" is a valid semver range for lodash
+97 silly addNameRange { name: 'lodash', range: '>=4.14.0 <5.0.0', hasData: false }
+98 silly mapToRegistry name lodash
+99 silly mapToRegistry using default registry
+100 silly mapToRegistry registry https://registry.npmjs.org/
+101 silly mapToRegistry data Result {
+101 silly mapToRegistry   raw: 'lodash',
+101 silly mapToRegistry   scope: null,
+101 silly mapToRegistry   name: 'lodash',
+101 silly mapToRegistry   rawSpec: '',
+101 silly mapToRegistry   spec: 'latest',
+101 silly mapToRegistry   type: 'tag' }
+102 silly mapToRegistry uri https://registry.npmjs.org/lodash
+103 verbose addNameRange registry:https://registry.npmjs.org/lodash not in flight; fetching
+104 verbose get https://registry.npmjs.org/lodash not expired, no request
+105 silly addNameRange number 2 { name: 'lodash', range: '>=4.14.0 <5.0.0', hasData: true }
+106 silly addNameRange versions [ 'lodash',
+106 silly addNameRange   [ '0.1.0',
+106 silly addNameRange     '0.2.0',
+106 silly addNameRange     '0.2.1',
+106 silly addNameRange     '0.2.2',
+106 silly addNameRange     '0.3.0',
+106 silly addNameRange     '0.3.1',
+106 silly addNameRange     '0.3.2',
+106 silly addNameRange     '0.4.0',
+106 silly addNameRange     '0.4.1',
+106 silly addNameRange     '0.4.2',
+106 silly addNameRange     '0.5.0-rc.1',
+106 silly addNameRange     '0.5.0',
+106 silly addNameRange     '0.5.1',
+106 silly addNameRange     '0.5.2',
+106 silly addNameRange     '0.6.0',
+106 silly addNameRange     '0.6.1',
+106 silly addNameRange     '0.7.0',
+106 silly addNameRange     '0.8.0',
+106 silly addNameRange     '0.8.1',
+106 silly addNameRange     '0.8.2',
+106 silly addNameRange     '0.9.0',
+106 silly addNameRange     '0.9.1',
+106 silly addNameRange     '0.9.2',
+106 silly addNameRange     '0.10.0',
+106 silly addNameRange     '1.0.0-rc.1',
+106 silly addNameRange     '1.0.0-rc.2',
+106 silly addNameRange     '1.0.0-rc.3',
+106 silly addNameRange     '1.0.0',
+106 silly addNameRange     '1.0.1',
+106 silly addNameRange     '1.1.0',
+106 silly addNameRange     '1.1.1',
+106 silly addNameRange     '1.2.0',
+106 silly addNameRange     '1.2.1',
+106 silly addNameRange     '1.3.0',
+106 silly addNameRange     '1.3.1',
+106 silly addNameRange     '2.0.0',
+106 silly addNameRange     '2.1.0',
+106 silly addNameRange     '2.2.0',
+106 silly addNameRange     '2.2.1',
+106 silly addNameRange     '2.3.0',
+106 silly addNameRange     '2.4.0',
+106 silly addNameRange     '2.4.1',
+106 silly addNameRange     '3.0.0',
+106 silly addNameRange     '3.0.1',
+106 silly addNameRange     '3.1.0',
+106 silly addNameRange     '3.2.0',
+106 silly addNameRange     '3.3.0',
+106 silly addNameRange     '3.3.1',
+106 silly addNameRange     '3.4.0',
+106 silly addNameRange     '3.5.0',
+106 silly addNameRange     '3.6.0',
+106 silly addNameRange     '1.0.2',
+106 silly addNameRange     '3.7.0',
+106 silly addNameRange     '2.4.2',
+106 silly addNameRange     '3.8.0',
+106 silly addNameRange     '3.9.0',
+106 silly addNameRange     '3.9.1',
+106 silly addNameRange     '3.9.2',
+106 silly addNameRange     '3.9.3',
+106 silly addNameRange     '3.10.0',
+106 silly addNameRange     '3.10.1',
+106 silly addNameRange     '4.0.0',
+106 silly addNameRange     '4.0.1',
+106 silly addNameRange     '4.1.0',
+106 silly addNameRange     '4.2.0',
+106 silly addNameRange     '4.2.1',
+106 silly addNameRange     '4.3.0',
+106 silly addNameRange     '4.4.0',
+106 silly addNameRange     '4.5.0',
+106 silly addNameRange     '4.5.1',
+106 silly addNameRange     '4.6.0',
+106 silly addNameRange     '4.6.1',
+106 silly addNameRange     '4.7.0',
+106 silly addNameRange     '4.8.0',
+106 silly addNameRange     '4.8.1',
+106 silly addNameRange     '4.8.2',
+106 silly addNameRange     '4.9.0',
+106 silly addNameRange     '4.10.0',
+106 silly addNameRange     '4.11.0',
+106 silly addNameRange     '4.11.1',
+106 silly addNameRange     '4.11.2',
+106 silly addNameRange     '4.12.0',
+106 silly addNameRange     '4.13.0',
+106 silly addNameRange     '4.13.1',
+106 silly addNameRange     '4.14.0',
+106 silly addNameRange     '4.14.1',
+106 silly addNameRange     '4.14.2',
+106 silly addNameRange     '4.15.0',
+106 silly addNameRange     '4.16.0',
+106 silly addNameRange     '4.16.1',
+106 silly addNameRange     '4.16.2',
+106 silly addNameRange     '4.16.3',
+106 silly addNameRange     '4.16.4',
+106 silly addNameRange     '4.16.5',
+106 silly addNameRange     '4.16.6',
+106 silly addNameRange     '4.17.0',
+106 silly addNameRange     '4.17.1',
+106 silly addNameRange     '4.17.2',
+106 silly addNameRange     '4.17.3',
+106 silly addNameRange     '4.17.4' ] ]
+107 silly addNamed lodash@4.17.4
+108 verbose addNamed "4.17.4" is a plain semver version for lodash
+109 silly cache afterAdd lodash@4.17.4
+110 verbose afterAdd C:\Users\kongchun\AppData\Roaming\npm-cache\lodash\4.17.4\package\package.json not in flight; writing
+111 verbose correctMkdir C:\Users\kongchun\AppData\Roaming\npm-cache correctMkdir not in flight; initializing
+112 verbose afterAdd C:\Users\kongchun\AppData\Roaming\npm-cache\lodash\4.17.4\package\package.json written
+113 silly loadAllDepsIntoIdealTree Finishing
+114 silly idealTree:prePrune global
+114 silly idealTree:prePrune `-- async@2.4.1
+114 silly idealTree:prePrune   `-- lodash@4.17.4
+115 silly loadIdealTree Finishing
+116 silly currentTree global
+117 silly idealTree global
+117 silly idealTree `-- async@2.4.1
+117 silly idealTree   `-- lodash@4.17.4
+118 silly generateActionsToTake Starting
+119 silly install generateActionsToTake
+120 silly generateActionsToTake Finishing
+121 silly diffTrees action count 2
+122 silly diffTrees add lodash@4.17.4
+123 silly diffTrees add async@2.4.1
+124 silly decomposeActions action count 16
+125 silly decomposeActions fetch lodash@4.17.4
+126 silly decomposeActions extract lodash@4.17.4
+127 silly decomposeActions test lodash@4.17.4
+128 silly decomposeActions preinstall lodash@4.17.4
+129 silly decomposeActions build lodash@4.17.4
+130 silly decomposeActions install lodash@4.17.4
+131 silly decomposeActions postinstall lodash@4.17.4
+132 silly decomposeActions finalize lodash@4.17.4
+133 silly decomposeActions fetch async@2.4.1
+134 silly decomposeActions extract async@2.4.1
+135 silly decomposeActions test async@2.4.1
+136 silly decomposeActions preinstall async@2.4.1
+137 silly decomposeActions build async@2.4.1
+138 silly decomposeActions install async@2.4.1
+139 silly decomposeActions postinstall async@2.4.1
+140 silly decomposeActions finalize async@2.4.1
+141 silly executeActions Starting
+142 silly install executeActions
+143 silly doSerial global-install 0
+144 silly doParallel fetch 2
+145 verbose correctMkdir C:\Users\kongchun\AppData\Roaming\npm-cache\_locks correctMkdir not in flight; initializing
+146 verbose lock using C:\Users\kongchun\AppData\Roaming\npm-cache\_locks\staging-cfb532ee4733a7af.lock for C:\Program Files\nodejs\global\node_modules\.staging
+147 verbose unlock done using C:\Users\kongchun\AppData\Roaming\npm-cache\_locks\staging-cfb532ee4733a7af.lock for C:\Program Files\nodejs\global\node_modules\.staging
+148 silly rollbackFailedOptional Starting
+149 silly rollbackFailedOptional Finishing
+150 silly runTopLevelLifecycles Starting
+151 silly runTopLevelLifecycles Finishing
+152 silly install printInstalled
+153 verbose stack Error: EPERM: operation not permitted, mkdir 'C:\Program Files\nodejs\global\node_modules\.staging'
+153 verbose stack     at Error (native)
+154 verbose cwd D:\workspace\Learning-Examples\ES6
+155 error Windows_NT 10.0.14393
+156 error argv "C:\\Program Files\\nodejs\\node.exe" "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js" "install" "-g" "async"
+157 error node v6.2.0
+158 error npm  v3.8.9
+159 error path C:\Program Files\nodejs\global\node_modules\.staging
+160 error code EPERM
+161 error errno -4048
+162 error syscall mkdir
+163 error Error: EPERM: operation not permitted, mkdir 'C:\Program Files\nodejs\global\node_modules\.staging'
+163 error     at Error (native)
+163 error  { Error: EPERM: operation not permitted, mkdir 'C:\Program Files\nodejs\global\node_modules\.staging'
+163 error     at Error (native)
+163 error   errno: -4048,
+163 error   code: 'EPERM',
+163 error   syscall: 'mkdir',
+163 error   path: 'C:\\Program Files\\nodejs\\global\\node_modules\\.staging' }
+164 error Please try running this command again as root/Administrator.
+165 verbose exit [ -4048, true ]

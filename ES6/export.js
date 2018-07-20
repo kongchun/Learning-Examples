@@ -2,7 +2,7 @@
 'use strict';
 
 
-export var firstName = "kong";
+
 var lastName = "chun";
 
 function show(x) {
@@ -13,7 +13,9 @@ function hi() {
     console.log("hi");
 }
 
-export { lastName, show };
+export var firstName = "kong";
+
+export  { lastName, show };
 
 
 export default class User {
