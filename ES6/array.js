@@ -51,4 +51,19 @@ console.log([1, 2, 3].includes(1, 2))
 
 console.log("====");
 
+let y = [1,2,3];
+let z = y.reduce(function(prev, cur, index, arr) {
+    console.log(prev, cur, index);
+    return prev+cur;
+})
+
+
+let yy = [1,2,[3,4,5]];
+console.log(Array.prototype.concat.apply([],yy));
+let zz = y.reduce(function(prev, cur, index, arr) {
+    console.log(prev, cur, index);
+    return prev+cur;
+})
+
+ console.log(z);
 //数组推导 ES7
