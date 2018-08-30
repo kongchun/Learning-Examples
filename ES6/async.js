@@ -17,20 +17,12 @@ function B(callback){
 
 
 async function asyncFun(task) {
-	var promiseArr = task.map((func)=>{
-		return () => {
-			return new Promise((resolve)=>{
-				func(resolve);
-			})
-		}
-	})
-
-	for(let func of promiseArr){
-	    await func();
+	for(let func of task){
+	    await new Promise((resolve)=>{
+			func(resolve);
+		})
 	}
 	
-	
-
 	//OR
 	//async.waterfall(...task)
 }
@@ -53,11 +45,19 @@ async function timeout() {
 　　return 'hello world';
 }
 
+// function timeout(){
+// 	//return Promise.resolve("hello world")
+//   return new Promise((resolve) => {
+//  	 resolve("hello world")
+//   });
+// }
+
+
 //console.log(timeout())
 
-timeout().then((result)=>{
-	//console.log(result)
-})
+// timeout().then((result)=>{
+// 	console.log(result)
+// })
 
 
 function timeoutRun(ms) {
@@ -76,3 +76,137 @@ async function testResult() {
 testResult().then((t)=>{
 	//console.log(t)
 })
+
+
+// function timeout2(ms=500,callback) {
+//     // setTimeout(function(){
+//     // 	console.log(1);
+//     // 	callback && callback(1);
+//     // }, ms);
+    
+//     return new Promise((resolve) => {
+// 	    setTimeout(()=>{
+// 	    	console.log(1);
+// 			resolve(2);
+// 		}, ms);
+// 	 });
+	
+   
+// }
+
+
+// async function run(){
+// 	console.log(0)
+
+// 	// timeout2(500,function(value){
+// 	// 	console.log("hello world",value)
+// 	// });
+	 
+// 	// timeout2(500).then((value)=>{
+// 	// 	console.log("hello world",value);
+// 	// })
+	
+// 	var value = await timeout2(500);
+// 	console.log("hello world",2);
+// }
+
+// run()
+// 
+// 
+// 
+// 
+// 
+function wait(){
+	// setTimeout(function(){
+	// 	console.log(1);
+	// 	callback && callback("success");
+	// },500)
+
+
+	 return new Promise((resolve) => {
+	    setTimeout(()=>{
+	    	console.log(1);
+			resolve("success");
+		}, 500);
+	})
+}
+
+
+function getJSON(url){
+	return  new  Promise((resolve,reject) => {
+	   $.getJSON(url,function(json){
+	   		resolve(json)
+		}).error(function(e){
+			reject(e)
+		})
+	})
+}
+
+
+
+
+(async function(){
+	// wait(function(value){
+	// 	console.log(2);
+	// 	console.log(value);
+	// })
+	
+	// wait().then((value)=>{
+	// 	console.log(2);
+	// 	console.log(value);
+	// }).catch((e)=>{
+	// 	console.log(e);
+	// })
+	
+	 var value = await wait();
+	 console.log(2);
+	 console.log(value);
+
+	 //var json = await getJSON(url);
+	 //console.log(json);
+})()
+
+
+
+
+function play(){
+    step1(function(){
+        step2(function(){
+            step3(function(){
+                step4(function(){
+                    func();
+                });
+            })
+        })
+    })
+}
+
+
+function play(){
+    step1.then(function(){
+       return step2();
+    }).then(()=>{
+       return step3();
+    }).then(()=>{
+       return step4();
+    }).then(()=>{
+       return func();
+    }).catch((e)=>{
+		console.log(e);
+		return {}
+	})
+}
+
+
+
+async function play(){
+
+	await step1();
+	await step2();
+	await step3();
+	await step4();
+	return func();
+
+}
+
+//play()
