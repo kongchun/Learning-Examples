@@ -81,3 +81,6 @@ let f3; {
 
 }
 console.log(f3());
+
+console.log("100"+1);
+console.log("100"-"1");
