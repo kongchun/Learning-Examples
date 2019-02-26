@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>渐进式Web应用演示</title>
+    <meta name="theme-color" content="#333333">
+    <link rel="manifest" href="pwa-demo.webmanifest">
+    <link rel="shortcut icon" href="images/web.png">
+    <script src="js/data.js" defer></script>
+    <script src="js/app.js" defer></script>
+</head>
+
+<body>
+    <h1>PWA Demo</h1>
+    <div>
+        <button id="register">注册Service Worker</button>
+        <button id="unregister">取消注册Service Worker</button>
+        <button id="clear">清除缓存</button>
+        <button id="notification">生成通知</button>
+        <button id="subscribe">订阅推送服务</button>
+        <button id="push">触发推送</button>
+        <button id="unsubscribe">退订推送服务</button>
+        <button id="sync">触发同步</button>
+    </div>
+    <div id="content"></div>
+</body>
+
+</html>

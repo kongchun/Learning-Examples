@@ -1,0 +1,14 @@
+{
+    "name": "渐进式Web应用演示",
+    "short_name": "PWA Demo",
+    "description": "Progressive Web App that lists Arch Linux official wallpapers.",
+    "icons": [{
+        "src": "images/web.png",
+        "sizes": "250x250",
+        "type": "image/png"
+    }],
+    "start_url": "/pwa-demo/index.html",
+    "display": "standalone",
+    "theme_color": "#333333",
+    "background_color": "#f6f9fc"
+}
