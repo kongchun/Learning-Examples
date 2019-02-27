@@ -10,7 +10,8 @@ const appShellList = [
     '/pwa-demo/images/placeholder.jpg',
     '/pwa-demo/images/web.png',
     '/pwa-demo/js/app.js',
-    '/pwa-demo/js/data.js'
+    '/pwa-demo/js/data.js',
+    '/pwa-demo/pwa-demo.webmanifest'
 ];
 
 //需要缓存的列表
@@ -97,5 +98,17 @@ self.addEventListener('sync', (e) => {
         );
     } else {
         console.log('Sync tag does not match, skipped.');
+    }
+});
+
+//message事件
+self.addEventListener('message', async (e) => {
+    if (e.data === 'calc') {
+        let result = calc();
+        //获取WindowClient
+        let clientList = await self.clients.matchAll();
+        clientList.forEach((client) => {
+            client.postMessage(result);
+        });
     }
 });

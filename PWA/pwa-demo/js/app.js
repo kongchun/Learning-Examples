@@ -1,7 +1,7 @@
 //生成内容模板 简单的img标签 先显示placeholder tmp存入来自data.js的实际路径
 let content = '';
 imageData.forEach((path) => {
-    content += `<img src="/pwa-demo/images/placeholder.jpg" tmp="${path}"/>`;
+    content += `<div class="img-container"><img src="/pwa-demo/images/placeholder.jpg" tmp="${path}"/></div>`;
 });
 document.querySelector('#content').innerHTML = content;
 
@@ -105,8 +105,28 @@ async function triggerSync() {
     }
 }
 
+//在主线程计算
+document.querySelector('#calcMain').addEventListener('click', () => {
+    console.time('main');
+    console.log('From Main: ' + calc());
+    console.timeEnd('main');
+});
+//在Service Worker计算
+document.querySelector('#calcWorker').addEventListener('click', () => {
+    console.time('worker');
+    //这只是演示 如果真要进行复杂计算 应该单开一个Worker线程
+    navigator.serviceWorker.controller.postMessage('calc');
+});
+
+//message事件
+navigator.serviceWorker.addEventListener('message', (e) => {
+    if (e.origin === location.origin) {
+        console.log('From Worker: ' + e.data);
+        console.timeEnd('worker');
+    }
+})
+
 //按需加载图片
-let imgNodes = document.querySelectorAll('img[tmp]');
 let observer = new IntersectionObserver((entries, observer)=>{
     entries.forEach((entry)=>{
         if (entry.isIntersecting) {
@@ -119,6 +139,7 @@ let observer = new IntersectionObserver((entries, observer)=>{
         }
     });
 });
+let imgNodes = document.querySelectorAll('img[tmp]');
 imgNodes.forEach((img) => {
     observer.observe(img);
 });
