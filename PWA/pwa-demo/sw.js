@@ -54,6 +54,8 @@ self.addEventListener('fetch', (e) => {
 self.addEventListener('activate', (e) => {
     //在service worker生效时触发 触发激活实际上其它所有版本的service worker都已经冗余了
     console.log('Service Worker activate triggered.');
+    //声明接管所有客户端
+    self.clients.claim();
     e.waitUntil(
         (async () => {
             let keyList = await caches.keys();
