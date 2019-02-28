@@ -5,7 +5,7 @@ PWA范例
 
 要运行demo，将`pwa-demo/`部署在一个服务器下。如果要测试推送（本范例仅支持Firefox）或同步（只有Chrome支持这个特性）功能，需要启动`server-demo`项目(SpringBoot)：
 ```shell
-java -jar server-demo-*.java
+java -jar server-demo-[VERSION].java
 ```
 并将8080端口代理到和静态页面相同的端口，nginx最简配置参考：
 ```

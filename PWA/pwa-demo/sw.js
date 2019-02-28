@@ -11,11 +11,15 @@ const appShellList = [
     '/pwa-demo/images/web.png',
     '/pwa-demo/js/app.js',
     '/pwa-demo/js/data.js',
+    '/pwa-demo/js/worker.js',
     '/pwa-demo/pwa-demo.webmanifest'
 ];
 
 //需要缓存的列表
 let cacheList = imageData.concat(appShellList);
+
+//skip waiting to force activate
+//self.skipWaiting();
 
 //install事件
 self.addEventListener('install', (e) => {
@@ -56,10 +60,10 @@ self.addEventListener('fetch', (e) => {
 self.addEventListener('activate', (e) => {
     //在service worker生效时触发 触发激活实际上其它所有版本的service worker都已经冗余了
     console.log('Service Worker activate triggered.');
-    //声明接管所有客户端
-    self.clients.claim();
     e.waitUntil(
         (async () => {
+            //声明接管所有客户端
+            await self.clients.claim();
             let keyList = await caches.keys();
             return Promise.all(
                 keyList.map(async (key) => {
@@ -70,9 +74,18 @@ self.addEventListener('activate', (e) => {
                         return result;
                     }
                 })
-            )
+            );
         })()
     )
+});
+
+//notificationclick事件
+self.addEventListener('notificationclick', (e) => {
+    console.log(`Notification "${e.notification.title}" clicked.`);
+});
+//notificationclose事件
+self.addEventListener('notificationclose', (e) => {
+    console.log(`Notification "${e.notification.title}" closed.`);
 });
 
 //push事件
@@ -85,6 +98,28 @@ self.addEventListener('push', (e) => {
         })
     );
 });
+
+//pushsubscriptionchange事件 实际上指的是各种原因导致订阅丢失
+self.addEventListener('pushsubscriptionchange', (e) => {
+    console.log('Push Subscription Changed.');
+    e.waitUntil(
+        (async () => {
+            try {
+                //重新获取公钥
+                let res = await fetch('/push-server/getKey');
+                let publicKey = await res.arrayBuffer();
+                //订阅
+                let subscription = await self.registration.pushManager.subscribe({
+                    userVisibleOnly: true,
+                    applicationServerKey: publicKey
+                });
+                console.log(subscription.toJSON());
+            } catch (e) {
+                console.warn(e.message);
+            }
+        })()
+    );
+})
 
 //sync事件 Chrome独有
 self.addEventListener('sync', (e) => {
@@ -108,11 +143,15 @@ self.addEventListener('sync', (e) => {
 //message事件
 self.addEventListener('message', async (e) => {
     if (e.data === 'calc') {
-        let result = calc();
-        //获取WindowClient
-        let clientList = await self.clients.matchAll();
-        for (let client of clientList) {
-            client.postMessage(result);
-        }
+        e.waitUntil(
+            (async () => {
+                let result = calc();
+                //获取WindowClient
+                let clientList = await self.clients.matchAll();
+                for (let client of clientList) {
+                    client.postMessage(result);
+                }
+            })()
+        );
     }
 });

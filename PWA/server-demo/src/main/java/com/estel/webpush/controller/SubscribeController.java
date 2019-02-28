@@ -1,5 +1,6 @@
 package com.estel.webpush.controller;
 
+import com.estel.webpush.util.KeyUtils;
 import nl.martijndwars.webpush.Notification;
 import nl.martijndwars.webpush.PushService;
 import nl.martijndwars.webpush.Subscription;
@@ -32,32 +33,29 @@ public class SubscribeController {
 	@RequestMapping("/getKey")
 	@ResponseBody
 	public byte[] getKey(){
-		generateKeys();
-		return Utils.encode(this.publicKey);
+		return Utils.encode(KeyUtils.publicKey);
 	}
 
 	@RequestMapping("/push")
 	@ResponseBody
-	public String push(@RequestBody Subscription subscription){
+	public Integer push(@RequestBody Subscription subscription){
 		try {
+			System.out.println("Push Triggered.");
 			Notification notification = new Notification(subscription,"From Push Server!");
 			PushService pushService = new PushService();
-//			pushService.setPublicKey(Utils.loadPublicKey("BGl4xCE-w3XVGeX5F2fSvNTTuyMT-cfPf9qYf1b8tJc9mO3Y2P9FcEH7JVzBlcolwJ2Vgg7JNwvfWyzsj-xBe90="));
-//			pushService.setPrivateKey(Utils.loadPrivateKey("V6pWDEb6vldP8TvSo25G2uco2A9AbP92-MakZdvbnFk="));
-			pushService.setPublicKey(this.publicKey);
-			pushService.setPrivateKey(this.privateKey);
+			//pushService.setPublicKey(Utils.loadPublicKey("BGl4xCE-w3XVGeX5F2fSvNTTuyMT-cfPf9qYf1b8tJc9mO3Y2P9FcEH7JVzBlcolwJ2Vgg7JNwvfWyzsj-xBe90="));
+			//pushService.setPrivateKey(Utils.loadPrivateKey("V6pWDEb6vldP8TvSo25G2uco2A9AbP92-MakZdvbnFk="));
+			pushService.setPublicKey(KeyUtils.publicKey);
+			pushService.setPrivateKey(KeyUtils.privateKey);
 			//Thread.sleep(5000);
 			HttpResponse httpResponse = pushService.send(notification);
-
 			int statusCode = httpResponse.getStatusLine().getStatusCode();
-			System.out.println(statusCode);
-			if(statusCode == HttpStatus.SC_CREATED || statusCode == HttpStatus.SC_OK){
-				return "Push Succeeded";
-			}
+			System.out.println("Status Code: " + statusCode);
+			return statusCode;
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return "Push Failed";
+		return -1;
 	}
 
 	@RequestMapping("/sync")
@@ -65,20 +63,5 @@ public class SubscribeController {
 	public String sync(){
 		System.out.println("Sync Triggered.");
 		return "Sync From Server";
-	}
-
-	private void generateKeys(){
-		//rewrite web-push cli: https://github.com/web-push-libs/webpush-java
-		try{
-			ECNamedCurveParameterSpec parameterSpec = ECNamedCurveTable.getParameterSpec(CURVE);
-			KeyPairGenerator keyPairGenerator = KeyPairGenerator.getInstance(ALGORITHM, PROVIDER_NAME);
-			keyPairGenerator.initialize(parameterSpec);
-			KeyPair keyPair = keyPairGenerator.generateKeyPair();
-
-			this.publicKey = (ECPublicKey) keyPair.getPublic();
-			this.privateKey = (ECPrivateKey) keyPair.getPrivate();
-		} catch (Exception e){
-			e.printStackTrace();
-		}
 	}
 }
