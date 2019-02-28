@@ -32,22 +32,24 @@ self.addEventListener('install', (e) => {
 
 //fetch事件
 self.addEventListener('fetch', (e) => {
-    console.log('Service Worker fetching...');
-    //拦截请求 自定义响应
-    e.respondWith(
-        (async () => {
-            let response = await caches.match(e.request);
-            if (!response) {
-                //如果缓存中不存在相符则重新请求
-                response = await fetch(e.request);
-                //并存入缓存
-                let cache = await caches.open(version);
-                await cache.put(e.request, response.clone());
-                console.log(`Service Worker cached missing resource: ${e.request.url}`);
-            }
-            return response;
-        })()
-    );
+    if (!e.request.url.includes('/push-server/')) {
+        console.log('Service Worker fetching...');
+        //拦截请求 自定义响应
+        e.respondWith(
+            (async () => {
+                let response = await caches.match(e.request);
+                if (!response) {
+                    //如果缓存中不存在相符则重新请求
+                    response = await fetch(e.request);
+                    //并存入缓存
+                    let cache = await caches.open(version);
+                    await cache.put(e.request, response.clone());
+                    console.log(`Service Worker cached missing resource: ${e.request.url}`);
+                }
+                return response;
+            })()
+        );
+    }
 });
 
 //activate事件
@@ -109,8 +111,8 @@ self.addEventListener('message', async (e) => {
         let result = calc();
         //获取WindowClient
         let clientList = await self.clients.matchAll();
-        clientList.forEach((client) => {
+        for (let client of clientList) {
             client.postMessage(result);
-        });
+        }
     }
 });

@@ -1,8 +1,8 @@
 //生成内容模板 简单的img标签 先显示placeholder tmp存入来自data.js的实际路径
 let content = '';
-imageData.forEach((path) => {
+for (let path of imageData) {
     content += `<div class="img-container"><img src="/pwa-demo/images/placeholder.jpg" tmp="${path}"/></div>`;
-});
+}
 document.querySelector('#content').innerHTML = content;
 
 //注册Service Worker
@@ -15,18 +15,18 @@ document.querySelector('#register').addEventListener('click', async () => {
 document.querySelector('#unregister').addEventListener('click', async () => {
     let registrations = await navigator.serviceWorker.getRegistrations();
     console.log('Unregistering all service worker...');
-    registrations.forEach((reg) => {
+    for (let reg of registrations) {
         reg.unregister();
-    });
+    }
 });
 
 //清除当前欲下所有缓存
 document.querySelector('#clear').addEventListener('click', async () => {
     let keyList = await caches.keys();
     console.log('Clearing all caches...');
-    keyList.forEach((key) => {
+    for (let key of keyList) {
         caches.delete(key);
-    });
+    }
 });
 
 //生成一个通知样例
@@ -112,23 +112,33 @@ document.querySelector('#calcMain').addEventListener('click', () => {
     console.timeEnd('main');
 });
 //在Service Worker计算
-document.querySelector('#calcWorker').addEventListener('click', () => {
-    console.time('worker');
+document.querySelector('#calcServiceWorker').addEventListener('click', () => {
+    console.time('serviceworker');
     //这只是演示 如果真要进行复杂计算 应该单开一个Worker线程
     navigator.serviceWorker.controller.postMessage('calc');
 });
-
-//message事件
+//message事件 service worker
 navigator.serviceWorker.addEventListener('message', (e) => {
     if (e.origin === location.origin) {
-        console.log('From Worker: ' + e.data);
-        console.timeEnd('worker');
+        console.log('From Service Worker: ' + e.data);
+        console.timeEnd('serviceworker');
     }
-})
+});
+
+//在Worker计算 (推荐)
+let calcWorker = new Worker('js/worker.js');
+document.querySelector('#calcWorker').addEventListener('click', () => {
+    console.time('worker');
+    calcWorker.postMessage('calc');
+});
+calcWorker.addEventListener('message', (e) => {
+    console.log('From Worker: ' + e.data);
+    console.timeEnd('worker');
+});
 
 //按需加载图片
 let observer = new IntersectionObserver((entries, observer)=>{
-    entries.forEach((entry)=>{
+    for (let entry of entries) {
         if (entry.isIntersecting) {
             let img = entry.target;
             img.setAttribute('src', img.getAttribute('tmp'));
@@ -137,9 +147,9 @@ let observer = new IntersectionObserver((entries, observer)=>{
             };
             observer.unobserve(img);
         }
-    });
+    }
 });
 let imgNodes = document.querySelectorAll('img[tmp]');
-imgNodes.forEach((img) => {
+for (let img of imgNodes) {
     observer.observe(img);
-});
+}
