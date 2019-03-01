@@ -1,4 +1,22 @@
-//生成内容模板 简单的img标签 先显示placeholder tmp存入来自data.js的实际路径
+//生成内容模板 简单的img标签 先显示placeholder tmp存入实际路径
+const imageData = [
+    '/pwa-demo/images/archlinux/archlinux-aftermath.jpg',
+    '/pwa-demo/images/archlinux/archlinux-aqua-vines.jpg',
+    '/pwa-demo/images/archlinux/archlinux-arrival.jpg',
+    '/pwa-demo/images/archlinux/archlinux-berry.jpg',
+    '/pwa-demo/images/archlinux/archlinux-burn.jpg',
+    '/pwa-demo/images/archlinux/archlinux-carbonite-knight.jpg',
+    '/pwa-demo/images/archlinux/archlinux-deep-aurora.jpg',
+    '/pwa-demo/images/archlinux/archlinux-ekisho-carbonite.jpg',
+    '/pwa-demo/images/archlinux/archlinux-elation.jpg',
+    '/pwa-demo/images/archlinux/archlinux-firestarter.jpg',
+    '/pwa-demo/images/archlinux/archlinux-luminous-uber.jpg',
+    '/pwa-demo/images/archlinux/archlinux-poison.jpg',
+    '/pwa-demo/images/archlinux/archlinux-poolclouds.jpg',
+    '/pwa-demo/images/archlinux/archlinux-simplyblack.png',
+    '/pwa-demo/images/archlinux/archlinux-tribute.jpg',
+    '/pwa-demo/images/archlinux/archlinux-underground.jpg'
+];
 let content = '';
 for (let path of imageData) {
     content += `<div class="img-container"><img src="/pwa-demo/images/placeholder.jpg" tmp="${path}"/></div>`;
