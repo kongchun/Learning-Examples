@@ -15,9 +15,6 @@ const appShellList = [
     '/pwa-demo/pwa-demo.webmanifest'
 ];
 
-//跳过等待直接激活
-//self.skipWaiting();
-
 //install事件
 self.addEventListener('install', (e) => {
     console.log('Service Worker installing...');
@@ -28,6 +25,8 @@ self.addEventListener('install', (e) => {
             return cache.addAll(appShellList);
         })
     );
+    //跳过等待直接激活
+    //self.skipWaiting();
     console.log('Service Worker cached app shell.');
 });
 
@@ -41,11 +40,15 @@ self.addEventListener('fetch', (e) => {
                 let response = await caches.match(e.request);
                 if (!response) {
                     //如果缓存中不存在相符则重新请求
-                    response = await fetch(e.request);
+                    response = await fetch(e.request, {
+                        cache: "reload"
+                    });
                     //并存入缓存
-                    let cache = await caches.open(version);
-                    await cache.put(e.request, response.clone());
-                    console.log(`Service Worker cached missing resource: ${e.request.url}`);
+                    if (response.ok) {
+                        let cache = await caches.open(version);
+                        await cache.put(e.request, response.clone());
+                        console.log(`Service Worker cached missing resource: ${e.request.url}`);
+                    }
                 }
                 return response;
             })()
