@@ -1,31 +1,31 @@
 //生成内容模板 简单的img标签 先显示placeholder tmp存入实际路径
 const imageData = [
-    '/pwa-demo/images/archlinux/archlinux-aftermath.jpg',
-    '/pwa-demo/images/archlinux/archlinux-aqua-vines.jpg',
-    '/pwa-demo/images/archlinux/archlinux-arrival.jpg',
-    '/pwa-demo/images/archlinux/archlinux-berry.jpg',
-    '/pwa-demo/images/archlinux/archlinux-burn.jpg',
-    '/pwa-demo/images/archlinux/archlinux-carbonite-knight.jpg',
-    '/pwa-demo/images/archlinux/archlinux-deep-aurora.jpg',
-    '/pwa-demo/images/archlinux/archlinux-ekisho-carbonite.jpg',
-    '/pwa-demo/images/archlinux/archlinux-elation.jpg',
-    '/pwa-demo/images/archlinux/archlinux-firestarter.jpg',
-    '/pwa-demo/images/archlinux/archlinux-luminous-uber.jpg',
-    '/pwa-demo/images/archlinux/archlinux-poison.jpg',
-    '/pwa-demo/images/archlinux/archlinux-poolclouds.jpg',
-    '/pwa-demo/images/archlinux/archlinux-simplyblack.png',
-    '/pwa-demo/images/archlinux/archlinux-tribute.jpg',
-    '/pwa-demo/images/archlinux/archlinux-underground.jpg'
+    'images/archlinux/archlinux-aftermath.jpg',
+    'images/archlinux/archlinux-aqua-vines.jpg',
+    'images/archlinux/archlinux-arrival.jpg',
+    'images/archlinux/archlinux-berry.jpg',
+    'images/archlinux/archlinux-burn.jpg',
+    'images/archlinux/archlinux-carbonite-knight.jpg',
+    'images/archlinux/archlinux-deep-aurora.jpg',
+    'images/archlinux/archlinux-ekisho-carbonite.jpg',
+    'images/archlinux/archlinux-elation.jpg',
+    'images/archlinux/archlinux-firestarter.jpg',
+    'images/archlinux/archlinux-luminous-uber.jpg',
+    'images/archlinux/archlinux-poison.jpg',
+    'images/archlinux/archlinux-poolclouds.jpg',
+    'images/archlinux/archlinux-simplyblack.png',
+    'images/archlinux/archlinux-tribute.jpg',
+    'images/archlinux/archlinux-underground.jpg'
 ];
 let content = '';
 for (let path of imageData) {
-    content += `<div class="img-container"><img src="/pwa-demo/images/placeholder.jpg" tmp="${path}"/></div>`;
+    content += `<div class="img-container"><img src="images/placeholder.jpg" tmp="${path}"/></div>`;
 }
 document.querySelector('#content').innerHTML = content;
 
 //注册Service Worker
 document.querySelector('#register').addEventListener('click', async () => {
-    await navigator.serviceWorker.register('/pwa-demo/sw.js');
+    await navigator.serviceWorker.register('sw.js');
     console.log('Service Worker registered.');
 });
 
@@ -56,7 +56,7 @@ document.querySelector('#notification').addEventListener('click', async () => {
     if (result === 'granted') {
         new Notification('Notification Demo', {
             body: '"Hello, World!" from Notification constructor.',
-            icon: '/pwa-demo/images/web.png'
+            icon: 'images/web.png'
         });
     }
 });
@@ -68,7 +68,7 @@ document.querySelector('#showNotification').addEventListener('click', async () =
         let registration = await navigator.serviceWorker.ready;
         registration.showNotification('Notification Demo', {
             body: '"Hello, World!" from ServiceWorkerRegistration.showNotification()',
-            icon: '/pwa-demo/images/web.png'
+            icon: 'images/web.png'
         });
     }
 });

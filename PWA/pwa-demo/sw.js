@@ -5,14 +5,14 @@ self.importScripts('js/global.js');
 const version = 'v1';
 //app shell
 const appShellList = [
-    '/pwa-demo/',
-    '/pwa-demo/index.html',
-    '/pwa-demo/images/placeholder.jpg',
-    '/pwa-demo/images/web.png',
-    '/pwa-demo/js/app.js',
-    '/pwa-demo/js/global.js',
-    '/pwa-demo/js/worker.js',
-    '/pwa-demo/pwa-demo.webmanifest'
+    './',
+    'index.html',
+    'images/placeholder.jpg',
+    'images/web.png',
+    'js/app.js',
+    'js/global.js',
+    'js/worker.js',
+    'pwa-demo.webmanifest'
 ];
 
 //install事件

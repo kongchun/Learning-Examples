@@ -7,7 +7,7 @@
         "sizes": "250x250",
         "type": "image/png"
     }],
-    "start_url": "/pwa-demo/index.html",
+    "start_url": "/pwa-demo/",
     "display": "standalone",
     "theme_color": "#333333",
     "background_color": "#f6f9fc"
