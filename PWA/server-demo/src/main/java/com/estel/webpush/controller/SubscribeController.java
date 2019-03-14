@@ -6,29 +6,14 @@ import nl.martijndwars.webpush.PushService;
 import nl.martijndwars.webpush.Subscription;
 import nl.martijndwars.webpush.Utils;
 import org.apache.http.HttpResponse;
-import org.apache.http.HttpStatus;
-import org.bouncycastle.jce.ECNamedCurveTable;
-import org.bouncycastle.jce.interfaces.ECPrivateKey;
-import org.bouncycastle.jce.interfaces.ECPublicKey;
-import org.bouncycastle.jce.spec.ECNamedCurveParameterSpec;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.security.KeyPair;
-import java.security.KeyPairGenerator;
-
-import static nl.martijndwars.webpush.Utils.ALGORITHM;
-import static nl.martijndwars.webpush.Utils.CURVE;
-import static org.bouncycastle.jce.provider.BouncyCastleProvider.PROVIDER_NAME;
-
 @Controller
 @RequestMapping("/")
 public class SubscribeController {
-
-	private ECPublicKey publicKey = null;
-	private ECPrivateKey privateKey = null;
 
 	@RequestMapping("/getKey")
 	@ResponseBody

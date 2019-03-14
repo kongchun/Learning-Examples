@@ -141,17 +141,15 @@ self.addEventListener('sync', (e) => {
 });
 
 //message事件
-self.addEventListener('message', async (e) => {
-    if (e.data === 'calc') {
-        e.waitUntil(
-            (async () => {
-                let result = calc();
-                //获取WindowClient
-                let clientList = await self.clients.matchAll();
-                for (let client of clientList) {
-                    client.postMessage(result);
-                }
-            })()
-        );
+self.addEventListener('message', e => {
+    if (hiText === e.data) { //通过MessageChannel
+        e.ports[0].postMessage('hi from sw');
+    } else if (helloText === e.data) { //通过ServiceWorker本身
+        e.source.postMessage('hello to source'); //找到源发送消息
+        self.clients.matchAll().then((clientList) => {
+            for (let client of clientList) {
+                client.postMessage('hello from sw'); //广播给所有客户端
+            }
+        });
     }
 });

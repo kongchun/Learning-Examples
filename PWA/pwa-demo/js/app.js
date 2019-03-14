@@ -166,27 +166,33 @@ async function triggerSync() {
     }
 }
 
+//postMessage (一般)
+document.querySelector('#postMessage').addEventListener('click', () => {
+    navigator.serviceWorker.controller.postMessage(helloText);
+});
+//监听从ServiceWork的消息
+navigator.serviceWorker.addEventListener('message', e => {
+    console.log(`Message from ServiceWorker: ${e.data}`);
+});
+
+//postMessage (MessageChannel)
+document.querySelector('#messageChannel').addEventListener('click', () => {
+    let messageChannel = new MessageChannel();
+    //监听消息
+    messageChannel.port1.onmessage = e => {
+        console.log(`Message from MessageChannel: ${e.data}`);
+    }
+    navigator.serviceWorker.controller.postMessage(hiText, [messageChannel.port2]);
+});
+
 //在主线程计算
 document.querySelector('#calcMain').addEventListener('click', () => {
     console.time('main');
     console.log('From Main: ' + calc());
     console.timeEnd('main');
 });
-//在Service Worker计算
-document.querySelector('#calcServiceWorker').addEventListener('click', () => {
-    console.time('serviceworker');
-    //这只是演示 如果真要进行复杂计算 应该单开一个Worker线程
-    navigator.serviceWorker.controller.postMessage('calc');
-});
-//message事件 service worker
-navigator.serviceWorker.addEventListener('message', (e) => {
-    if (e.origin === location.origin) {
-        console.log('From Service Worker: ' + e.data);
-        console.timeEnd('serviceworker');
-    }
-});
 
-//在Worker计算 (推荐)
+//在Worker计算
 let calcWorker = new Worker('js/worker.js');
 document.querySelector('#calcWorker').addEventListener('click', () => {
     console.time('worker');
