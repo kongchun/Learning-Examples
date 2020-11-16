@@ -1,13 +1,17 @@
 var name = function() {
     console.log("i am cat");
 }
+var  age =1;
 
-exports.name = name;
 
 var aa = {
     name: function() {
         console.log("i am cat 2");
-    }
+    },
+    age:2
 }
 
-module.exports = aa
+module.exports = aa;
+
+exports.name = name;
+exports.age = age;

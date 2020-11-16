@@ -1,6 +1,10 @@
 // babel babel-es6.js --out-file babel-es5.js
 'use strict';
 
+
+
+
+
 //let 作用域内有效
 {
     let a = 1;
@@ -27,12 +31,12 @@ for (let i = 0; i < 10; i++) {
 
 a[5]();
 
-typeof x;
+//typeof x;
 let x;
 
 {
     console.log(foo); // 输出undefined
-    console.log(bar); // 报错ReferenceError
+    //console.log(bar); // 报错ReferenceError
 
     var foo = 2;
     let bar = 2;
@@ -84,3 +88,12 @@ console.log(f3());
 
 console.log("100"+1);
 console.log("100"-"1");
+
+
+console.log(new Array(3))
+
+for(let i=0;i<5;i++){
+	setTimeout(()=>{
+		console.log(i)
+	},0)
+}

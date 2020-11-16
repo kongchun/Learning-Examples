@@ -6,17 +6,14 @@ module.exports = {
   entry: './src/js/index.js',
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: 'main.js'
+    filename: 'main.bundle.js'
   },
   plugins: [
     new HtmlWebpackPlugin({
-    	inject:"head"
-    }),
-
-    new webpack.ProvidePlugin({
-      jQuery: "jquery",
-      $: "jquery"
+      inject:"head",
+      template:".src/index.html"
     })
+
   ]
 
 	
